@@ -178,11 +178,13 @@ function registerSlackHandlers(app) {
 
     try {
       const msg = channelId
-        ? await client.chat.postMessage({
-            channel: channelId,
-            text: `:hourglass_flowing_sand: Generating banner...`,
-          })
-        : null;
+  ? await client.chat.postMessage({
+      channel: channelId,
+      text: `:hourglass_flowing_sand: Generating banner...`,
+    })
+  : null;
+
+const threadTs = msg?.ts;
 
       const params = {
         title,
@@ -198,7 +200,7 @@ function registerSlackHandlers(app) {
       await client.files.uploadV2({
         channel_id: uploadTarget,
         file: fs.createReadStream(outputPath),
-        thread_ts: msg?.ts,
+        thread_ts: threadTs,
         filename: `banner-${Date.now()}.png`,
         title: `Banner: ${title || TEMPLATES[templateId].name}`,
         initial_comment: `:white_check_mark: Banner ready! Template: *${TEMPLATES[templateId].name}*${title ? ` | Title: "${title}"` : ''}`,
