@@ -180,7 +180,7 @@ function registerSlackHandlers(app) {
       const msg = channelId
   ? await client.chat.postMessage({
       channel: channelId,
-      text: `:hourglass_flowing_sand: Generating banner...`,
+     text: `:point_down: Your banner is ready in the thread!`,
     })
   : null;
 
