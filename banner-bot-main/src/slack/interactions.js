@@ -7,15 +7,17 @@ function registerSlackHandlers(app) {
   app.command('/banner', async ({ ack, body, client }) => {
     await ack();
 
+    const truncate = (str, max = 75) => str.length > max ? str.slice(0, max - 1) + '…' : str;
+
     const templateOptions = Object.entries(TEMPLATES).map(([id, t]) => ({
-      text: { type: 'plain_text', text: `${t.name} — ${t.description}` },
+      text: { type: 'plain_text', text: truncate(`${t.name} — ${t.description}`) },
       value: id,
     }));
 
     const logos = listLogos();
     const logoOptions = logos.length > 0
       ? logos.map(l => ({
-          text: { type: 'plain_text', text: l.replace(/\.[^.]+$/, '') },
+          text: { type: 'plain_text', text: truncate(l.replace(/\.[^.]+$/, '')) },
           value: l,
         }))
       : [{ text: { type: 'plain_text', text: 'No logos available' }, value: 'none' }];
