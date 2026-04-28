@@ -31,6 +31,7 @@ function buildModalBlocks(selectedTemplateId = null) {
   const templateBlock = {
     type: 'input',
     block_id: 'template_block',
+    dispatch_action: true,
     label: { type: 'plain_text', text: 'Template' },
     element: {
       type: 'static_select',
