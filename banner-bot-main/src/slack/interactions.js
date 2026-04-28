@@ -203,7 +203,7 @@ const threadTs = msg?.ts;
         thread_ts: threadTs,
         filename: `banner-${Date.now()}.png`,
         title: `Banner: ${title || TEMPLATES[templateId].name}`,
-        initial_comment: `:white_check_mark: Banner ready! Template: *${TEMPLATES[templateId].name}*${title ? ` | Title: "${title}"` : ''}`,
+        initial_comment: `:white_check_mark: <@${userId}> Banner ready! Template: *${TEMPLATES[templateId].name}*${title ? ` | Title: "${title}"` : ''}`,
       });
 
     
