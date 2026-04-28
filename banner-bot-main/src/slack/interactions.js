@@ -206,9 +206,7 @@ const threadTs = msg?.ts;
         initial_comment: `:white_check_mark: Banner ready! Template: *${TEMPLATES[templateId].name}*${title ? ` | Title: "${title}"` : ''}`,
       });
 
-      if (msg) {
-        await client.chat.delete({ channel: channelId, ts: msg.ts }).catch(() => {});
-      }
+    
 
       fs.unlinkSync(outputPath);
     } catch (error) {
