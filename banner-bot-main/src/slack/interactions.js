@@ -198,6 +198,7 @@ function registerSlackHandlers(app) {
       await client.files.uploadV2({
         channel_id: uploadTarget,
         file: fs.createReadStream(outputPath),
+        thread_ts: msg?.ts,
         filename: `banner-${Date.now()}.png`,
         title: `Banner: ${title || TEMPLATES[templateId].name}`,
         initial_comment: `:white_check_mark: Banner ready! Template: *${TEMPLATES[templateId].name}*${title ? ` | Title: "${title}"` : ''}`,
