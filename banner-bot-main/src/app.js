@@ -3,7 +3,9 @@ const { App } = require('@slack/bolt');
 const { registerSlackHandlers } = require('./slack/interactions');
 const { closeBrowser } = require('./renderer');
 const { listLogos } = require('./templates/templates');
+
 console.log('Available logos:', listLogos());
+
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
   signingSecret: process.env.SLACK_SIGNING_SECRET,
@@ -20,7 +22,6 @@ registerSlackHandlers(app);
   console.log('Use /banner in Slack to create a banner.');
 })();
 
-// Graceful shutdown
 process.on('SIGINT', async () => {
   await closeBrowser();
   process.exit(0);
