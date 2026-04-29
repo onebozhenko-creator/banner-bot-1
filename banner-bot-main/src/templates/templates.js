@@ -1066,7 +1066,13 @@ const TEMPLATES = {
 // List available partner logos
 function listLogos() {
   const files = fs.readdirSync(LOGOS_DIR);
-  return files.filter(f => !f.startsWith('everstake-') && /\.(png|jpg|jpeg|svg|webp)$/i.test(f));
+  return files.filter(f =>
+    !f.startsWith('everstake-') &&
+    !f.startsWith('bg-') &&
+    !f.startsWith('pattern-') &&
+    !f.startsWith('week-') &&
+    /\.(png|jpg|jpeg|svg|webp)$/i.test(f)
+  );
 }
 
 module.exports = { TEMPLATES, listLogos, getPartnerLogo, getEverstakeLogo, imageToBase64 };
