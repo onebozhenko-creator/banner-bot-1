@@ -2,7 +2,8 @@ require('dotenv').config();
 const { App } = require('@slack/bolt');
 const { registerSlackHandlers } = require('./slack/interactions');
 const { closeBrowser } = require('./renderer');
-
+const { listLogos } = require('./templates/templates');
+console.log('Available logos:', listLogos());
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
   signingSecret: process.env.SLACK_SIGNING_SECRET,
